@@ -5,7 +5,7 @@ public class ChocolateBoiler {
     private boolean boiled;
 
     // The single instance of ChocolateBoiler (lazy initialization)
-    private static ChocolateBoiler uniqueInstance;
+    private  static ChocolateBoiler uniqueInstance;
 
     // Private constructor to prevent instantiation
     private ChocolateBoiler() {
@@ -15,9 +15,9 @@ public class ChocolateBoiler {
 
     // Public method to get the single instance
     public static ChocolateBoiler getInstance() {
-        if (uniqueInstance == null) {
+        if (uniqueInstance == null) { synchronized (ChocolateBoiler.class) { if (uniqueInstance == null) {
             uniqueInstance = new ChocolateBoiler();
-        }
+        } } }
         return uniqueInstance;
     }
 
